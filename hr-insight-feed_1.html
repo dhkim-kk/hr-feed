@@ -185,17 +185,16 @@ const ADMIN_PASSWORD = 'catchtable2026';
 const KEY = 'hr_feed_sheet_v1';
 let articles = [];
 let currentCat = '전체';
-let csvUrl = '';
 let isAdmin = false;
 
+// ← 여기에 본인 CSV URL 고정
+let csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSANdceIQ5EqZg4fPSlypDwu_yqOrfFTtbK8bwNMiLEptyRXdOjnYu3QED6TnkqmmUwMfBfw6o0tdg7/pub?gid=661983695&single=true&output=csv';
+
 function init() {
-  const saved = localStorage.getItem(KEY);
-  if (saved) {
-    csvUrl = saved;
-    document.getElementById('setupBanner').classList.add('hidden');
-    setSheetBtn();
-    loadSheet();
-  }
+  document.getElementById('setupBanner').classList.add('hidden');
+  setSheetBtn();
+  loadSheet();
+}
 }
 
 // ── 관리자 잠금 ──
