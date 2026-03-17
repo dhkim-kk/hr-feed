@@ -8,64 +8,65 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Pretendard', sans-serif; background: #f9f9f7; color: #1a1a1a; min-height: 100vh; }
   .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
-  .setup-banner {
-    background: #fff8e6; border: 1px solid #f0d080; border-radius: 10px;
-    padding: 14px 18px; margin: 1.5rem 0; font-size: 13px; color: #7a5c00; line-height: 1.7;
-  }
+
+  /* 셋업 배너 */
+  .setup-banner { background: #fff8e6; border: 1px solid #f0d080; border-radius: 10px; padding: 14px 18px; margin: 1.5rem 0; font-size: 13px; color: #7a5c00; line-height: 1.7; }
   .setup-banner.hidden { display: none; }
   .setup-banner strong { font-weight: 600; }
   .setup-banner code { background: #fff3d0; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
   .setup-input-row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-  .setup-input-row input {
-    flex: 1; min-width: 240px; padding: 7px 11px; font-size: 13px;
-    border-radius: 8px; border: 1px solid #ddd; font-family: inherit; outline: none;
-  }
-  .btn-setup {
-    padding: 7px 14px; border-radius: 8px; border: none;
-    background: #1a1a1a; color: #fff; font-size: 13px; cursor: pointer; font-family: inherit;
-  }
-  .btn-setup:hover { background: #333; }
-  .top-bar {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    padding: 2rem 0 1.25rem; border-bottom: 1px solid #e5e5e0;
-    margin-bottom: 1.5rem; gap: 12px; flex-wrap: wrap;
-  }
+  .setup-input-row input { flex: 1; min-width: 240px; padding: 7px 11px; font-size: 13px; border-radius: 8px; border: 1px solid #ddd; font-family: inherit; outline: none; }
+  .btn-setup { padding: 7px 14px; border-radius: 8px; border: none; background: #1a1a1a; color: #fff; font-size: 13px; cursor: pointer; font-family: inherit; }
+
+  /* 상단 바 */
+  .top-bar { display: flex; align-items: center; justify-content: space-between; padding: 2rem 0 1.25rem; border-bottom: 1px solid #e5e5e0; margin-bottom: 1.5rem; gap: 12px; flex-wrap: wrap; }
   .top-bar-left h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.3px; }
   .top-bar-left p { font-size: 13px; color: #888; margin-top: 4px; }
   .badge { display: inline-block; background: #FF3A2F; color: #fff; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 999px; margin-left: 8px; vertical-align: middle; }
-  .top-actions { display: flex; gap: 8px; align-items: center; }
-  .btn-icon {
-    display: flex; align-items: center; gap: 6px;
-    padding: 8px 14px; border-radius: 8px; border: 1px solid #ddd;
-    background: #fff; color: #555; cursor: pointer; font-size: 13px;
-    font-family: inherit; text-decoration: none; transition: background 0.15s;
-  }
+  .top-right { display: flex; align-items: center; gap: 8px; }
+
+  /* 자물쇠 버튼 */
+  .lock-btn { width: 32px; height: 32px; border-radius: 8px; border: 1px solid #e0e0e0; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+  .lock-btn:hover { background: #f5f5f3; }
+
+  /* 관리자 버튼 (잠금 해제 시 보임) */
+  .admin-actions { display: none; align-items: center; gap: 8px; }
+  .admin-actions.show { display: flex; }
+  .btn-icon { display: flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: 8px; border: 1px solid #ddd; background: #fff; color: #555; cursor: pointer; font-size: 13px; font-family: inherit; text-decoration: none; transition: background 0.15s; }
   .btn-icon:hover { background: #f5f5f3; }
-  .btn-icon:disabled { opacity: 0.5; cursor: not-allowed; }
-  .btn-icon.hidden { display: none; }
+  .btn-sheet { color: #1d7d3a; }
+  .btn-sheet:hover { background: #f0faf3; }
+  .btn-lock-off { color: #c00; font-size: 12px; border-color: #fcd0d0; }
+  .btn-lock-off:hover { background: #fff3f3; }
+
+  /* 비밀번호 모달 */
+  .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 100; align-items: center; justify-content: center; }
+  .modal-bg.show { display: flex; }
+  .modal { background: #fff; border-radius: 14px; padding: 1.75rem 1.75rem 1.5rem; width: 320px; box-shadow: 0 8px 40px rgba(0,0,0,0.15); }
+  .modal h2 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .modal p { font-size: 13px; color: #888; margin-bottom: 16px; }
+  .modal input { width: 100%; padding: 9px 12px; font-size: 14px; border-radius: 8px; border: 1px solid #ddd; font-family: inherit; outline: none; margin-bottom: 10px; transition: border-color 0.15s; }
+  .modal input:focus { border-color: #999; }
+  .modal-error { font-size: 12px; color: #c00; margin-bottom: 10px; min-height: 16px; }
+  .modal-btns { display: flex; gap: 8px; justify-content: flex-end; }
+  .btn-cancel { padding: 8px 14px; border-radius: 8px; border: 1px solid #ddd; background: #fff; font-size: 13px; cursor: pointer; font-family: inherit; }
+  .btn-confirm { padding: 8px 14px; border-radius: 8px; border: none; background: #1a1a1a; color: #fff; font-size: 13px; cursor: pointer; font-family: inherit; }
+  .btn-confirm:hover { background: #333; }
+
+  /* 검색 + 필터 */
   .search-wrap { margin-bottom: 1rem; }
-  .search-wrap input {
-    width: 100%; padding: 10px 14px; font-size: 14px; border-radius: 10px;
-    border: 1px solid #ddd; background: #fff; color: #1a1a1a;
-    font-family: inherit; outline: none; transition: border-color 0.15s;
-  }
+  .search-wrap input { width: 100%; padding: 10px 14px; font-size: 14px; border-radius: 10px; border: 1px solid #ddd; background: #fff; color: #1a1a1a; font-family: inherit; outline: none; transition: border-color 0.15s; }
   .search-wrap input:focus { border-color: #999; }
   .search-wrap input::placeholder { color: #bbb; }
   .cats { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.25rem; }
-  .cat-btn {
-    padding: 6px 14px; border-radius: 999px; border: 1px solid #ddd;
-    background: #fff; color: #666; cursor: pointer; font-size: 13px;
-    transition: all 0.15s; font-family: inherit;
-  }
+  .cat-btn { padding: 6px 14px; border-radius: 999px; border: 1px solid #ddd; background: #fff; color: #666; cursor: pointer; font-size: 13px; transition: all 0.15s; font-family: inherit; }
   .cat-btn:hover { border-color: #999; color: #1a1a1a; }
   .cat-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+
+  /* 카드 */
   .status-bar { font-size: 12px; color: #aaa; margin-bottom: 12px; min-height: 18px; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
-  .card {
-    background: #fff; border: 1px solid #ebebeb; border-radius: 14px;
-    padding: 1.1rem 1.25rem; display: flex; flex-direction: column; gap: 9px;
-    transition: box-shadow 0.15s, border-color 0.15s;
-  }
+  .card { background: #fff; border: 1px solid #ebebeb; border-radius: 14px; padding: 1.1rem 1.25rem; display: flex; flex-direction: column; gap: 9px; transition: box-shadow 0.15s, border-color 0.15s; }
   .card:hover { border-color: #ccc; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
   .card-meta { display: flex; align-items: center; justify-content: space-between; }
   .cat-tag { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; }
@@ -78,40 +79,36 @@
   .card-date { font-size: 11px; color: #aaa; }
   .card-title { font-size: 14px; font-weight: 600; line-height: 1.55; color: #1a1a1a; }
   .card-source { font-size: 12px; color: #bbb; }
-  .card-summary {
-    font-size: 13px; color: #555; line-height: 1.65;
-    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-  }
+  .card-summary { font-size: 13px; color: #555; line-height: 1.65; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   .card-summary.expanded { -webkit-line-clamp: unset; overflow: visible; }
   .card-actions { display: flex; gap: 8px; margin-top: 4px; }
-  .btn-s {
-    font-size: 12px; padding: 5px 11px; border-radius: 8px;
-    border: 1px solid #e0e0e0; background: #fff; color: #666;
-    cursor: pointer; text-decoration: none; transition: background 0.12s; font-family: inherit;
-  }
+  .btn-s { font-size: 12px; padding: 5px 11px; border-radius: 8px; border: 1px solid #e0e0e0; background: #fff; color: #666; cursor: pointer; text-decoration: none; transition: background 0.12s; font-family: inherit; }
   .btn-s:hover { background: #f5f5f3; }
-  .state-box { grid-column: 1/-1; text-align: center; padding: 3rem 0; }
-  .state-box p { font-size: 14px; color: #aaa; }
+
+  /* 스켈레톤 */
   .skel { background: #fff; border: 1px solid #ebebeb; border-radius: 14px; padding: 1.1rem 1.25rem; display: flex; flex-direction: column; gap: 9px; }
   .skel-line { height: 12px; border-radius: 4px; background: #f0f0ee; animation: pulse 1.4s infinite; }
   @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.4} }
-  .error-box { background: #fff3f3; border: 1px solid #fcd0d0; border-radius: 10px; padding: 14px 18px; font-size: 13px; color: #c00; margin-bottom: 1rem; line-height: 1.6; }
+  .state-box { grid-column: 1/-1; text-align: center; padding: 3rem 0; }
+  .state-box p { font-size: 14px; color: #aaa; }
+  .error-box { background: #fff3f3; border: 1px solid #fcd0d0; border-radius: 10px; padding: 14px 18px; font-size: 13px; color: #c00; margin-bottom: 1rem; }
   .spin { display: inline-block; animation: spin 0.8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes spin { to{transform:rotate(360deg)} }
+
   footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #ebebeb; font-size: 12px; color: #ccc; text-align: center; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
+  <!-- 시트 연결 배너 -->
   <div class="setup-banner" id="setupBanner">
     <div style="font-size:20px;margin-bottom:8px">📋 Google 시트 연결 (처음 한 번만)</div>
-    <strong>1단계.</strong> <a href="https://docs.google.com/spreadsheets/create" target="_blank" style="color:#b87c00">새 Google 시트 만들기</a> → 첫 행(1행)에 아래 열 이름을 그대로 입력하세요:<br>
-    <code>title</code> &nbsp; <code>summary</code> &nbsp; <code>source</code> &nbsp; <code>date</code> &nbsp; <code>category</code> &nbsp; <code>url</code><br><br>
-    <strong>2단계.</strong> 상단 메뉴 → <strong>파일 → 공유 → 웹에 게시</strong> → <strong>쉼표로 구분된 값(.csv)</strong> 선택 → <strong>게시</strong> → URL 복사<br><br>
-    <strong>3단계.</strong> 복사한 URL을 아래에 붙여넣고 저장하세요.
+    <strong>1단계.</strong> Google 시트 → <strong>파일 → 공유 → 웹에 게시</strong> → CSV → 게시 → URL 복사<br>
+    첫 행(1행) 열 이름: <code>title</code> <code>summary</code> <code>source</code> <code>date</code> <code>category</code> <code>url</code><br><br>
+    <strong>2단계.</strong> 복사한 URL을 아래에 붙여넣고 저장하세요.
     <div class="setup-input-row">
-      <input type="text" id="sheetUrlInput" placeholder="https://docs.google.com/spreadsheets/d/.../pub?gid=0&single=true&output=csv" />
+      <input type="text" id="sheetUrlInput" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" />
       <button class="btn-setup" onclick="saveSheetUrl()">저장하고 연결</button>
     </div>
   </div>
@@ -121,16 +118,41 @@
       <h1>HR 인사이트 피드 <span class="badge">CATCHTABLE HR</span></h1>
       <p id="lastUpdated">—</p>
     </div>
-    <div class="top-actions">
-      <a class="btn-icon hidden" id="btnSheet" href="#" target="_blank">
-        <svg viewBox="0 0 16 16" fill="none" stroke="#1d7d3a" stroke-width="1.5" style="width:13px;height:13px"><rect x="2" y="2" width="12" height="12" rx="2"/><line x1="2" y1="6" x2="14" y2="6"/><line x1="6" y1="6" x2="6" y2="14"/></svg>
-        시트 편집
-      </a>
-      <button class="btn-icon" id="refreshBtn" onclick="loadSheet()">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px"><path d="M13.5 8A5.5 5.5 0 1 1 8 2.5" stroke-linecap="round"/><polyline points="11,1 14,4 11,7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        새로고침
+    <div class="top-right">
+      <!-- 관리자 버튼 (잠금 해제 시에만 보임) -->
+      <div class="admin-actions" id="adminActions">
+        <button class="btn-icon" id="refreshBtn" onclick="loadSheet()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px"><path d="M13.5 8A5.5 5.5 0 1 1 8 2.5" stroke-linecap="round"/><polyline points="11,1 14,4 11,7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          새로고침
+        </button>
+        <a class="btn-icon btn-sheet hidden" id="btnSheet" href="#" target="_blank">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#1d7d3a" stroke-width="1.5" style="width:13px;height:13px"><rect x="2" y="2" width="12" height="12" rx="2"/><line x1="2" y1="6" x2="14" y2="6"/><line x1="6" y1="6" x2="6" y2="14"/></svg>
+          시트 편집
+        </a>
+        <button class="btn-icon" onclick="resetUrl()" style="font-size:12px;color:#aaa;border-color:#eee">시트 변경</button>
+        <button class="btn-icon btn-lock-off" onclick="lockAdmin()">🔒 잠금</button>
+      </div>
+      <!-- 자물쇠 아이콘 -->
+      <button class="lock-btn" id="lockBtn" onclick="openModal()" title="관리자">
+        <svg viewBox="0 0 16 16" fill="none" stroke="#bbb" stroke-width="1.5" style="width:14px;height:14px">
+          <rect x="3" y="7" width="10" height="8" rx="2"/>
+          <path d="M5 7V5a3 3 0 0 1 6 0v2" stroke-linecap="round"/>
+        </svg>
       </button>
-      <button class="btn-icon" onclick="resetUrl()" style="font-size:12px;color:#aaa;border-color:#eee">시트 변경</button>
+    </div>
+  </div>
+
+  <!-- 비밀번호 모달 -->
+  <div class="modal-bg" id="modalBg" onclick="closeModalBg(event)">
+    <div class="modal">
+      <h2>관리자 확인</h2>
+      <p>비밀번호를 입력하면 관리 버튼이 활성화돼요</p>
+      <input type="password" id="pwInput" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')checkPw()" />
+      <div class="modal-error" id="pwError"></div>
+      <div class="modal-btns">
+        <button class="btn-cancel" onclick="closeModal()">취소</button>
+        <button class="btn-confirm" onclick="checkPw()">확인</button>
+      </div>
     </div>
   </div>
 
@@ -153,14 +175,18 @@
     <div class="state-box"><p>Google 시트를 연결하면 여기에 기사가 표시됩니다</p></div>
   </div>
 
-  <footer>CatchTable HR Team · Google Sheets 연동</footer>
+  <footer>CatchTable HR Team · 매일 아침 자동 업데이트</footer>
 </div>
 
 <script>
+// ── 비밀번호 설정 (여기서 변경하세요) ──
+const ADMIN_PASSWORD = 'catchtable2026';
+
 const KEY = 'hr_feed_sheet_v1';
 let articles = [];
 let currentCat = '전체';
 let csvUrl = '';
+let isAdmin = false;
 
 function init() {
   const saved = localStorage.getItem(KEY);
@@ -172,17 +198,49 @@ function init() {
   }
 }
 
+// ── 관리자 잠금 ──
+function openModal() {
+  document.getElementById('pwInput').value = '';
+  document.getElementById('pwError').textContent = '';
+  document.getElementById('modalBg').classList.add('show');
+  setTimeout(() => document.getElementById('pwInput').focus(), 100);
+}
+function closeModal() {
+  document.getElementById('modalBg').classList.remove('show');
+}
+function closeModalBg(e) {
+  if (e.target === document.getElementById('modalBg')) closeModal();
+}
+function checkPw() {
+  const val = document.getElementById('pwInput').value;
+  if (val === ADMIN_PASSWORD) {
+    isAdmin = true;
+    document.getElementById('adminActions').classList.add('show');
+    document.getElementById('lockBtn').style.display = 'none';
+    closeModal();
+  } else {
+    document.getElementById('pwError').textContent = '비밀번호가 틀렸습니다';
+    document.getElementById('pwInput').value = '';
+    document.getElementById('pwInput').focus();
+  }
+}
+function lockAdmin() {
+  isAdmin = false;
+  document.getElementById('adminActions').classList.remove('show');
+  document.getElementById('lockBtn').style.display = '';
+}
+
+// ── 시트 연결 ──
 function saveSheetUrl() {
   let v = document.getElementById('sheetUrlInput').value.trim();
   if (!v.includes('spreadsheets')) return alert('올바른 Google 시트 URL을 입력해주세요.');
-  if (!v.includes('output=csv')) v = v.replace(/[?&]output=[^&]*/,'') + (v.includes('?') ? '&' : '?') + 'output=csv';
+  if (!v.includes('output=csv')) v = v + (v.includes('?') ? '&' : '?') + 'output=csv';
   csvUrl = v;
   localStorage.setItem(KEY, v);
   document.getElementById('setupBanner').classList.add('hidden');
   setSheetBtn();
   loadSheet();
 }
-
 function resetUrl() {
   localStorage.removeItem(KEY);
   csvUrl = '';
@@ -192,41 +250,40 @@ function resetUrl() {
   document.getElementById('statusBar').textContent = '';
   document.getElementById('lastUpdated').textContent = '—';
 }
-
 function setSheetBtn() {
   const btn = document.getElementById('btnSheet');
   btn.classList.remove('hidden');
   btn.href = csvUrl.replace('output=csv','').replace(/[?&]$/,'').replace('/pub','/edit');
 }
 
+// ── 시트 불러오기 ──
 async function loadSheet() {
   if (!csvUrl) return;
   const btn = document.getElementById('refreshBtn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spin">↻</span> 불러오는 중...';
+  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spin">↻</span> 불러오는 중...'; }
   document.getElementById('errorBox').innerHTML = '';
   showSkels();
 
   try {
-    const res = await fetch(csvUrl + '&cachebust=' + Date.now());
-    if (!res.ok) throw new Error('시트 접근 실패 (' + res.status + '). 웹에 게시 설정을 확인해주세요.');
+    const res = await fetch(csvUrl + '&t=' + Date.now());
+    if (!res.ok) throw new Error('시트 접근 실패 (' + res.status + ')');
     const text = await res.text();
     const parsed = parseCSV(text);
     if (!parsed.length) throw new Error('데이터가 없습니다. 시트 첫 행에 title, summary, source, date, category, url 열이 있는지 확인하세요.');
     articles = parsed;
     const now = new Date();
-    document.getElementById('lastUpdated').textContent = '마지막 업데이트: ' + now.toLocaleString('ko-KR',{month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
+    document.getElementById('lastUpdated').textContent = '업데이트: ' + now.toLocaleString('ko-KR',{month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
     render();
   } catch(e) {
     document.getElementById('errorBox').innerHTML = '<div class="error-box">⚠️ ' + e.message + '</div>';
     document.getElementById('grid').innerHTML = '<div class="state-box"><p>불러오기 실패</p></div>';
     document.getElementById('statusBar').textContent = '';
   } finally {
-    btn.disabled = false;
-    btn.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px"><path d="M13.5 8A5.5 5.5 0 1 1 8 2.5" stroke-linecap="round"/><polyline points="11,1 14,4 11,7" stroke-linecap="round" stroke-linejoin="round"/></svg> 새로고침';
+    if (btn) { btn.disabled = false; btn.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px"><path d="M13.5 8A5.5 5.5 0 1 1 8 2.5" stroke-linecap="round"/><polyline points="11,1 14,4 11,7" stroke-linecap="round" stroke-linejoin="round"/></svg> 새로고침'; }
   }
 }
 
+// ── CSV 파싱 ──
 function parseCSV(csv) {
   const rows = csv.trim().split('\n');
   if (rows.length < 2) return [];
@@ -238,7 +295,6 @@ function parseCSV(csv) {
     return { title:g('title'), summary:g('summary'), source:g('source'), date:g('date'), category:g('category')||'기타', url:g('url') };
   }).filter(a => a.title);
 }
-
 function splitLine(line) {
   const r=[]; let cur='',q=false;
   for(let i=0;i<line.length;i++){
@@ -250,22 +306,21 @@ function splitLine(line) {
   r.push(cur); return r;
 }
 
+// ── 필터 + 렌더 ──
 function filterCat(btn) {
   currentCat = btn.dataset.cat;
   document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   render();
 }
-
 function tagCls(c) {
-  return ({채용:'tag-채용',조직문화:'tag-조직문화','HR테크':'tag-HR테크',리더십:'tag-리더십',트렌드:'tag-트렌드'})[c]||'tag-기타';
+  return ({'채용':'tag-채용','조직문화':'tag-조직문화','HR테크':'tag-HR테크','리더십':'tag-리더십','트렌드':'tag-트렌드'})[c]||'tag-기타';
 }
-
 function render() {
   const kw = (document.getElementById('searchInput').value||'').toLowerCase();
   let list = currentCat==='전체' ? articles : articles.filter(a=>a.category===currentCat);
   if(kw) list = list.filter(a=>(a.title+a.summary+a.source).toLowerCase().includes(kw));
-  document.getElementById('statusBar').textContent = list.length+'개 아티클';
+  document.getElementById('statusBar').textContent = list.length + '개 아티클';
   if(!list.length){document.getElementById('grid').innerHTML='<div class="state-box"><p>해당 조건의 기사가 없습니다</p></div>';return;}
   document.getElementById('grid').innerHTML = list.map((a,i)=>`
     <div class="card">
@@ -282,13 +337,11 @@ function render() {
       </div>
     </div>`).join('');
 }
-
 function tog(i) {
   const el=document.getElementById('s'+i);
   const b=el.nextElementSibling.querySelector('.btn-s');
   if(el.classList.toggle('expanded'))b.textContent='접기';else b.textContent='더 보기';
 }
-
 function showSkels() {
   document.getElementById('grid').innerHTML = Array(6).fill(0).map(()=>`
     <div class="skel">
