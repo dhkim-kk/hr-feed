@@ -229,6 +229,7 @@ function render() {
   const kw = (document.getElementById('searchInput').value || '').toLowerCase();
   let list = currentCat === '전체' ? articles : articles.filter(a => a.category === currentCat);
   if (kw) list = list.filter(a => (a.title + a.summary + a.source).toLowerCase().includes(kw));
+  list = list.sort((a, b) => new Date(b.date) - new Date(a.date));
   document.getElementById('statusBar').textContent = list.length + '개 아티클';
   if (!list.length) { document.getElementById('grid').innerHTML = '<div class="state-box"><p>해당 조건의 기사가 없습니다</p></div>'; return; }
   document.getElementById('grid').innerHTML = list.map((a, i) => `
